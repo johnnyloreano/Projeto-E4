@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Controller.FacadeController;
 import Model.Cart;
 import java.util.Scanner;
 import Model.Produto;
@@ -9,13 +10,16 @@ import Model.ProdutoItemPersistence;
 import java.util.Observable;
 import java.util.Observer;
 public class Interface implements Observer {
+    FacadeController facadeController;
     Controller controller;
     int qtdProdutos;
     int total;
     ProdutoItemPersistence persistence;
     public Interface(){
         this.persistence = new ProdutoItemPersistence();
-        this.controller = new Controller(this,Cart.instance());
+        this.facadeController = new FacadeController(this);
+        this.controller = this.facadeController.controller();
+
     }
     public void start(){
         this.menuPrincipal();
@@ -23,6 +27,7 @@ public class Interface implements Observer {
     public void update(Observable o, Object arg) {
         this.total = ((Cart) o).getTotal();
         this.qtdProdutos = ((Cart) o).getQuantity();
+        System.out.println("a");
     }
     public void menuPrincipal() {
         Scanner scan = new Scanner(System.in);

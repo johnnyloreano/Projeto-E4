@@ -15,6 +15,7 @@ public class Controller {
         this.anInterface = anInterface;
         this.cart = cart;
         this.pagamentoFactory = new PagamentoFactory();
+        this.cart.addObserver(this.anInterface);
     }
     public void addProduct(ProdutoItem produtoItem){
         this.cart.addProduct(produtoItem);

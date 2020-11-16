@@ -27,20 +27,23 @@ public class Cart extends Observable {
 	}
 	public void addProduct(ProdutoItem produtoItem){
 		this.produtoItemList.add(produtoItem);
-		notifyObservers();
+		setChanged();
+		super.notifyObservers();
 	}
 
 	public void clearCart(){
 		this.produtoItemList.clear();
-		notifyObservers();
+		setChanged();
+		super.notifyObservers();
 	}
 	public void removeProduct(ProdutoItem produtoItem){
 		this.produtoItemList.remove(produtoItem);
-		notifyObservers();
+		setChanged();
+		super.notifyObservers();
 	}
 	public void removeProduct(int index){
 		this.produtoItemList.remove(index);
-		notifyObservers();
+		super.notifyObservers();
 	}
 
 
